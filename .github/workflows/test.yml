@@ -8,10 +8,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Install yt-dlp
-        run: |
-          pip install yt-dlp
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
 
-      - name: Test YouTube
-        run: |
-          yt-dlp -j "https://youtu.be/-6a9RSBeADw"
+      - run: pip install -U yt-dlp
+
+      - run: |
+          yt-dlp \
+          --extractor-args "youtube:player_client=android_vr,tv" \
+          -j "https://youtu.be/-6a9RSBeADw"
