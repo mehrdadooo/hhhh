@@ -1,0 +1,17 @@
+name: YouTube Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install yt-dlp
+        run: |
+          pip install yt-dlp
+
+      - name: Test YouTube
+        run: |
+          yt-dlp -j "https://youtu.be/-6a9RSBeADw"
